@@ -1,0 +1,14 @@
+<resources>
+  <dimen name="fab_margin">16dp</dimen>
+  <dimen name="text_size_tiny">6sp</dimen>
+  <dimen name="text_size_xtiny">8sp</dimen>
+  <dimen name="text_size_small">12sp</dimen>
+  <dimen name="text_size_normal">13sp</dimen>
+  <dimen name="text_size_xnormal">16sp</dimen>
+  <dimen name="text_size_xxnormal">18sp</dimen>
+  <dimen name="text_size_header">20sp</dimen>
+  <dimen name="text_size_large">24sp</dimen>
+  <dimen name="text_size_xlarge">26sp</dimen>
+  <dimen name="text_size_xxlarge">28sp</dimen>
+  <dimen name="text_size_huge">30sp</dimen>
+</resources>
