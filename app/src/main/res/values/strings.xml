@@ -1,6 +1,8 @@
 <resources>
   <string name="app_name">Pop Movis</string>
   <string name="title_activity_main2">Main2Activity</string>
-  <string name="action_settings">Settings</string>
+  <string name="action_sort">Sort</string>
+  <string name="action_sort_popular">Most Popular</string>
+  <string name="action_sort_top">Top Rated</string>
   <string name="shared_image">sharedimage</string>
 </resources>

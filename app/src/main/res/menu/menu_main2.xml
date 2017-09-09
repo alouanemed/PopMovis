@@ -2,9 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.malouane.popularmovies.Main2Activity">
+
   <item
-      android:id="@+id/action_settings"
-      android:orderInCategory="100"
-      android:title="@string/action_settings"
+      android:id="@+id/action_sort_popular"
+      android:title="@string/action_sort_popular"
       app:showAsAction="never"/>
+  <item
+      android:id="@+id/action_sort_top"
+      android:orderInCategory="10"
+      android:title="@string/action_sort_top"
+      app:showAsAction="never"/>
+
 </menu>

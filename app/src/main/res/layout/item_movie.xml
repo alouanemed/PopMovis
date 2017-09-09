@@ -17,15 +17,30 @@
       android:clickable="true"
       android:focusable="true"
       >
-
-    <ImageView
-        android:id="@+id/imageViewCover"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:transitionName="@string/shared_image"
-        app:url="@{movie.posterPath}"
-        />
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:clipChildren="true"
+        android:clipToPadding="true"
+        android:orientation="vertical"
+        android:transitionName="cardview"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        >
+      <ImageView
+          android:id="@+id/imageViewCover"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:scaleType="centerCrop"
+          android:transitionName="@string/shared_image"
+          app:url="@{movie.posterPath}"
+          />
+    </android.support.v7.widget.CardView>
+
 
   </RelativeLayout>
 </layout>

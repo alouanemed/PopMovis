@@ -25,6 +25,10 @@ public class MovieListAdapter extends BaseAdapter<MovieListAdapter.MovieViewHold
     notifyDataSetChanged();
   }
 
+  public void clearData() {
+    movieEntities.clear();
+  }
+
   @Override public MovieViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
     return MovieViewHolder.create(LayoutInflater.from(viewGroup.getContext()), viewGroup,
         movieListCallback);
