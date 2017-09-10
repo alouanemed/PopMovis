@@ -12,8 +12,8 @@ import javax.inject.Inject;
 
 public class MovieDetailViewModel extends BaseViewModel {
 
-  DataManager dataManager;
-  MutableLiveData<MovieDetailEntity> movie;
+  private DataManager dataManager;
+  private MutableLiveData<MovieDetailEntity> movie;
 
   @Inject public MovieDetailViewModel(DataManager dataManager) {
     this.dataManager = dataManager;
@@ -21,7 +21,7 @@ public class MovieDetailViewModel extends BaseViewModel {
 
   public LiveData<MovieDetailEntity> getMovieWithId(int movieId) {
     if (movie == null) {
-      movie = new MutableLiveData<MovieDetailEntity>();
+      movie = new MutableLiveData<>();
       loadMoviesList(movie, movieId);
     }
     return movie;
@@ -33,7 +33,7 @@ public class MovieDetailViewModel extends BaseViewModel {
     }));
   }
 
-  public Single<MovieDetailEntity> performGeMovie(int movieId) {
+  private Single<MovieDetailEntity> performGeMovie(int movieId) {
     return dataManager.performGetMovie(movieId)
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread());

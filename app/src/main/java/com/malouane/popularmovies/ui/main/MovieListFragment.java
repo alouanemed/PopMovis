@@ -20,10 +20,10 @@ import javax.inject.Inject;
 
 public class MovieListFragment extends LifecycleFragment implements MovieListCallback {
 
-  @Inject MovieListViewModel movieListViewModel;
+  @Inject private MovieListViewModel movieListViewModel;
 
-  FragmentMovieListBinding binding;
-  MovieListAdapter adapter;
+  private FragmentMovieListBinding binding;
+  private MovieListAdapter adapter;
 
   public static MovieListFragment newInstance() {
     Bundle args = new Bundle();
@@ -53,12 +53,12 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
     getMoviesSortedBy("popular");
   }
 
-  public void getMoviesSortedBy(String sort) {
+  private void getMoviesSortedBy(String sort) {
     movieListViewModel.getMoviesList(sort)
         .observe(this, listResource -> binding.setMoviesList(listResource));
   }
 
-  public void clearList() {
+  private void clearList() {
     adapter.clearData();
   }
 
@@ -85,7 +85,8 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
   @Override public void onMovieClicked(MovieEntity movieEntity, View sharedView) {
     ActivityOptionsCompat options = ActivityOptionsCompat.
         makeSceneTransitionAnimation(getActivity(), sharedView, getString(R.string.shared_image));
-    startActivity(MovieDetailActivity.newIntent(getActivity(), movieEntity.getId()),
+    startActivity(MovieDetailActivity.newIntent(getActivity(), movieEntity.getId(),
+        movieEntity.getPosterPath()),
         options.toBundle());
   }
 }

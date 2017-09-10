@@ -14,7 +14,7 @@ android {
   buildTypes {
     debug{
       buildConfigField "String", "API_URL", '"https://api.themoviedb.org/3/"'
-      buildConfigField "String", "API_KEY", '"API_KEY_GOES_HERE"'
+      buildConfigField "String", "API_KEY", '"KEY_HERE"'
     }
 
     release {
@@ -40,10 +40,6 @@ repositories {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-  implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
-  implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-  implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
   implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
   implementation rootProject.ext.supportLibAppCompat
@@ -52,12 +48,11 @@ dependencies {
   implementation rootProject.ext.archRuntime
   implementation rootProject.ext.archExtension
   annotationProcessor rootProject.ext.archCompiler
-  implementation rootProject.ext.roomRuntime
-  annotationProcessor rootProject.ext.roomCompiler
   implementation rootProject.ext.okhttp
   implementation rootProject.ext.okhttpInterceptor
   implementation rootProject.ext.okhttpUrlConnection
   implementation rootProject.ext.rxJava
+  implementation rootProject.ext.rxAndroid
   implementation rootProject.ext.retrofit
   implementation rootProject.ext.gsonConverter
   annotationProcessor rootProject.ext.daggerCompiler
@@ -67,8 +62,11 @@ dependencies {
   annotationProcessor rootProject.ext.daggerAndroidProcessor
   implementation rootProject.ext.picasso
   implementation rootProject.ext.timber
+  implementation rootProject.ext.retrofitRxAdapter
+  implementation rootProject.ext.retrofitGson
+  implementation rootProject.ext.constrains
 
   testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'com.android.support.test:runner:1.0.0'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
+  androidTestImplementation 'com.android.support.test:runner:1.0.1'
+  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }

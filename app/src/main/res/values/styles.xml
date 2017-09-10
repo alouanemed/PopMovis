@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
   <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="colorPrimary">@color/primaryColor</item>
@@ -6,25 +6,24 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
-  <style name="AppTheme.NoActionBar">
-    <item name="windowActionBar">false</item>
-    <item name="windowNoTitle">true</item>
-  </style>
-
   <style name="MovieDetailTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorPrimary">@color/primaryColor</item>
     <item name="colorPrimaryDark">@color/primaryDarkColor</item>
     <item name="colorAccent">@color/colorAccent</item>
 
-    <item name="android:windowContentTransitions">true</item>
-    <item name="android:windowSharedElementEnterTransition">@transition/transition_motion</item>
-    <item name="android:windowSharedElementExitTransition">@transition/transition_motion</item>
+    <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+    <item name="android:windowSharedElementEnterTransition" tools:targetApi="lollipop">
+      @transition/transition_motion
+    </item>
+    <item name="android:windowSharedElementExitTransition" tools:targetApi="lollipop">
+      @transition/transition_motion
+    </item>
 
   </style>
 
-  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" tools:keep="@style/AppTheme_AppBarOverlay"/>
 
-  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" tools:keep="@style/AppTheme_PopupOverlay"/>
 
   <style name="AppTheme.Text.Headline" parent="@android:style/Widget.TextView">
     <item name="android:textSize">@dimen/text_size_xxlarge</item>

@@ -7,5 +7,6 @@
   <string name="title_detail_overview">Overview</string>
   <string name="title_detail_genre">Genres</string>
 
-  <string name="shared_image">sharedimage</string>
+  <string name="shared_image">shared_image</string>
+  <string name="description_movie_poster">movie poster</string>
 </resources>

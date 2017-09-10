@@ -14,20 +14,21 @@ import com.malouane.popularmovies.R;
 import com.malouane.popularmovies.databinding.ActivityMovieDetailBinding;
 import dagger.android.AndroidInjection;
 import javax.inject.Inject;
-import timber.log.Timber;
 
 public class MovieDetailActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
   private static final String KEY_MOVIE_ID = "KEY_MOVIE_ID";
+  private static final String KEY_MOVIE_POSTER = "KEY_MOVIE_POSTER";
 
   LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
   ActivityMovieDetailBinding binding;
 
-  @Inject MovieDetailViewModel movieDetailViewModel;
+  @Inject private MovieDetailViewModel movieDetailViewModel;
 
-  public static Intent newIntent(Context context, int movieID) {
+  public static Intent newIntent(Context context, int movieID, String posterPath) {
     Intent intent = new Intent(context, MovieDetailActivity.class);
     intent.putExtra(KEY_MOVIE_ID, movieID);
+    intent.putExtra(KEY_MOVIE_POSTER, posterPath);
     return intent;
   }
 
@@ -37,13 +38,12 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
     binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail);
 
     setSupportActionBar(binding.toolbar);
+    assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    binding.setPosterPath(getIntent().getStringExtra(KEY_MOVIE_POSTER));
     movieDetailViewModel.getMovieWithId(getIntent().getIntExtra(KEY_MOVIE_ID, 0))
-        .observe(this, movie -> {
-          Timber.d("genre size :  " + movie.getMovieGenres().size());
-          binding.setMovie(movie);
-        });
+        .observe(this, movie -> binding.setMovie(movie));
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {

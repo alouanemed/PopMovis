@@ -33,6 +33,9 @@ ext {
     archVersion = '1.0.0-alpha9'
     timberVersion = '4.5.1'
     rxjavaVersion = '2.1.3'
+    rxAndroidVersion = '2.0.1'
+    retrofitVersion = '2.3.0'
+    constraintsVersion = '1.0.2'
 
     supportLibAppCompat = "com.android.support:appcompat-v7:$supportLibVersion"
     supportCardView = "com.android.support:cardview-v7:$supportLibVersion"
@@ -40,8 +43,6 @@ ext {
     archRuntime = "android.arch.lifecycle:runtime:$archVersion"
     archExtension = "android.arch.lifecycle:extensions:$archVersion"
     archCompiler = "android.arch.lifecycle:compiler:$archVersion"
-    roomRuntime = "android.arch.persistence.room:runtime:$archVersion"
-    roomCompiler = "android.arch.persistence.room:compiler:$archVersion"
     dagger = "com.google.dagger:dagger:$daggerVersion"
     daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
     daggerAndroid = "com.google.dagger:dagger-android:$daggerVersion"
@@ -53,7 +54,10 @@ ext {
     okhttpInterceptor = "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     okhttpUrlConnection = "com.squareup.okhttp3:okhttp-urlconnection:$okhttpVersion"
     rxJava = "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
-    rxJavaAndroid = "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
+    rxAndroid = "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     picasso = "com.squareup.picasso:picasso:$picassoVersion"
     timber = "com.jakewharton.timber:timber:$timberVersion"
+    retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    retrofitGson = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    constrains = "com.android.support.constraint:constraint-layout:$constraintsVersion"
 }

@@ -12,8 +12,8 @@ import javax.inject.Inject;
 
 public class MovieListViewModel extends BaseViewModel {
 
-  MutableLiveData<MoviesApiResponse> moviesList;
-  DataManager dataManager;
+  private MutableLiveData<MoviesApiResponse> moviesList;
+  private DataManager dataManager;
 
 
   @Inject public MovieListViewModel(DataManager dataManager) {
@@ -21,11 +21,9 @@ public class MovieListViewModel extends BaseViewModel {
   }
 
   public LiveData<MoviesApiResponse> getMoviesList(String listType) {
-    if (moviesList == null) {
-      moviesList = new MutableLiveData<MoviesApiResponse>();
-      loadMoviesList(moviesList, listType);
-    } else if (moviesList != null && moviesList.getValue().getResults().isEmpty()) {
-      moviesList = new MutableLiveData<MoviesApiResponse>();
+    assert moviesList.getValue() != null;
+    if (moviesList == null || moviesList.getValue().getResults().isEmpty()) {
+      moviesList = new MutableLiveData<>();
       loadMoviesList(moviesList, listType);
     }
     return moviesList;
@@ -36,7 +34,7 @@ public class MovieListViewModel extends BaseViewModel {
         (moviesApiResponse, throwable) -> moviesList.setValue(moviesApiResponse)));
   }
 
-  public Single<MoviesApiResponse> performGeMovies(String listType) {
+  private Single<MoviesApiResponse> performGeMovies(String listType) {
     return dataManager.performGetMovies(listType)
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread());
