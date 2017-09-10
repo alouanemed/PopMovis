@@ -23,7 +23,7 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
   LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
   ActivityMovieDetailBinding binding;
 
-  @Inject private MovieDetailViewModel movieDetailViewModel;
+  @Inject MovieDetailViewModel movieDetailViewModel;
 
   public static Intent newIntent(Context context, int movieID, String posterPath) {
     Intent intent = new Intent(context, MovieDetailActivity.class);

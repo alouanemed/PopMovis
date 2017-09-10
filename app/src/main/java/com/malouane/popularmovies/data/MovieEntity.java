@@ -1,6 +1,5 @@
 package com.malouane.popularmovies.data;
 
-import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
@@ -17,7 +16,7 @@ public class MovieEntity implements Parcelable {
           return new MovieEntity[size];
         }
       };
-  @PrimaryKey @SerializedName("id") private int id;
+  @SerializedName("id") private int id;
   @SerializedName("poster_path") private String posterPath;
   @SerializedName("adult") private boolean adult;
   @SerializedName("overview") private String overview;

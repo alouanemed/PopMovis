@@ -37,7 +37,7 @@
           app:layout_scrollFlags="scroll|exitUntilCollapsed"
           >
         <ImageView
-            android:id="@+id/backdrop"
+            android:id="@+id/cover"
             android:layout_width="match_parent"
             android:layout_height="224dp"
             android:adjustViewBounds="true"
@@ -91,6 +91,7 @@
               android:layout_height="match_parent"
               android:contentDescription="@string/description_movie_poster"
               android:transitionName="@string/shared_image"
+              app:url="@{posterPath}"
               tools:targetApi="lollipop"
               />
 
@@ -170,14 +171,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:genres="@{movie}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_movie_label_genres"
-            />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="48dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_movie_label_genres"

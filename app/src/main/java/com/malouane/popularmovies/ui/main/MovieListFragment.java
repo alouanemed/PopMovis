@@ -20,7 +20,7 @@ import javax.inject.Inject;
 
 public class MovieListFragment extends LifecycleFragment implements MovieListCallback {
 
-  @Inject private MovieListViewModel movieListViewModel;
+  @Inject MovieListViewModel movieListViewModel;
 
   private FragmentMovieListBinding binding;
   private MovieListAdapter adapter;
