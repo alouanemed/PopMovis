@@ -3,6 +3,7 @@
     package="com.malouane.popularmovies">
 
   <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
 
   <application
       android:name=".PopMovisApp"
@@ -20,6 +21,10 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+    <activity
+        android:name=".ui.detail.MovieDetailActivity"
+        android:theme="@style/MovieDetailTheme"/>
+
 
   </application>
 

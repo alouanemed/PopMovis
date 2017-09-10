@@ -4,5 +4,8 @@
   <string name="action_sort">Sort</string>
   <string name="action_sort_popular">Most Popular</string>
   <string name="action_sort_top">Top Rated</string>
+  <string name="title_detail_overview">Overview</string>
+  <string name="title_detail_genre">Genres</string>
+
   <string name="shared_image">sharedimage</string>
 </resources>

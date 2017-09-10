@@ -1,30 +1,47 @@
 package com.malouane.popularmovies.data;
 
-import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
-@Entity(tableName = "movies") public class MovieEntity {
+public class MovieEntity implements Parcelable {
 
+  @SuppressWarnings("unused") public static final Parcelable.Creator<MovieEntity> CREATOR =
+      new Parcelable.Creator<MovieEntity>() {
+        @Override public MovieEntity createFromParcel(Parcel in) {
+          return new MovieEntity(in);
+        }
+
+        @Override public MovieEntity[] newArray(int size) {
+          return new MovieEntity[size];
+        }
+      };
   @PrimaryKey @SerializedName("id") private int id;
-
   @SerializedName("poster_path") private String posterPath;
-
   @SerializedName("adult") private boolean adult;
-
   @SerializedName("overview") private String overview;
-
   @SerializedName("original_title") private String originalTitle;
-
   @SerializedName("title") private String title;
-
   @SerializedName("vote_count") private int voteCount;
-
   @SerializedName("vote_average") private double voteAverage;
-
   @SerializedName("backdrop_path") private String backdropPath;
-
   @SerializedName("original_language") private String originalLanguage;
+  @SerializedName("release_date") private String releaseDate;
+
+  protected MovieEntity(Parcel in) {
+    id = in.readInt();
+    posterPath = in.readString();
+    adult = in.readByte() != 0x00;
+    overview = in.readString();
+    originalTitle = in.readString();
+    title = in.readString();
+    voteCount = in.readInt();
+    voteAverage = in.readDouble();
+    backdropPath = in.readString();
+    originalLanguage = in.readString();
+    releaseDate = in.readString();
+  }
 
   public int getId() {
     return id;
@@ -104,5 +121,30 @@ import com.google.gson.annotations.SerializedName;
 
   public void setOriginalLanguage(String originalLanguage) {
     this.originalLanguage = originalLanguage;
+  }
+
+  @Override public int describeContents() {
+    return 0;
+  }
+
+  @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeInt(id);
+    dest.writeString(posterPath);
+    dest.writeByte((byte) (adult ? 0x01 : 0x00));
+    dest.writeString(overview);
+    dest.writeString(originalTitle);
+    dest.writeString(title);
+    dest.writeInt(voteCount);
+    dest.writeDouble(voteAverage);
+    dest.writeString(backdropPath);
+    dest.writeString(releaseDate);
+  }
+
+  public String getReleaseDate() {
+    return releaseDate;
+  }
+
+  public void setReleaseDate(String releaseDate) {
+    this.releaseDate = releaseDate;
   }
 }

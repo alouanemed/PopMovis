@@ -8,13 +8,11 @@
       android:layout_height="match_parent"
       >
 
-
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-
 
       <android.support.design.widget.CollapsingToolbarLayout
           android:id="@+id/collapsingToolbar"
@@ -27,7 +25,6 @@
       </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
-
 
     <fragment
         android:id="@+id/movies_list"
