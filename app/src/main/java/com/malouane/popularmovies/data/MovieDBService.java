@@ -7,4 +7,7 @@ import retrofit2.http.Path;
 
 public interface MovieDBService {
   @GET("movie/{listType}") Single<MoviesApiResponse> loadMovies(@Path("listType") String listType);
+
+  @GET("movie/{movie_id}") Single<MovieDetailEntity> loadMovieDetails(
+      @Path("movie_id") int movieId);
 }

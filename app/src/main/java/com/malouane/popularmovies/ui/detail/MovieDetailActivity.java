@@ -11,10 +11,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import com.malouane.popularmovies.R;
-import com.malouane.popularmovies.data.MovieEntity;
 import com.malouane.popularmovies.databinding.ActivityMovieDetailBinding;
 import dagger.android.AndroidInjection;
 import javax.inject.Inject;
+import timber.log.Timber;
 
 public class MovieDetailActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
@@ -25,9 +25,9 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
 
   @Inject MovieDetailViewModel movieDetailViewModel;
 
-  public static Intent newIntent(Context context, MovieEntity movie) {
+  public static Intent newIntent(Context context, int movieID) {
     Intent intent = new Intent(context, MovieDetailActivity.class);
-    intent.putExtra(KEY_MOVIE_ID, movie);
+    intent.putExtra(KEY_MOVIE_ID, movieID);
     return intent;
   }
 
@@ -39,9 +39,11 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
     setSupportActionBar(binding.toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    assert getIntent().getExtras() != null;
-    MovieEntity currentMovie = getIntent().getExtras().getParcelable(KEY_MOVIE_ID);
-    binding.setMovie(currentMovie);
+    movieDetailViewModel.getMovieWithId(getIntent().getIntExtra(KEY_MOVIE_ID, 0))
+        .observe(this, movie -> {
+          Timber.d("genre size :  " + movie.getMovieGenres().size());
+          binding.setMovie(movie);
+        });
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {

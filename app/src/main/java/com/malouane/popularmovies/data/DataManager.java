@@ -15,4 +15,8 @@ public class DataManager implements IMoviesHttp {
   @Override public Single<MoviesApiResponse> performGetMovies(String listType) {
     return moviesHttp.performGetMovies(listType);
   }
+
+  @Override public Single<MovieDetailEntity> performGetMovie(int movieId) {
+    return moviesHttp.performGetMovie(movieId);
+  }
 }

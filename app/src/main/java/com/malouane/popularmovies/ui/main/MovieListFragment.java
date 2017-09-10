@@ -85,6 +85,7 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
   @Override public void onMovieClicked(MovieEntity movieEntity, View sharedView) {
     ActivityOptionsCompat options = ActivityOptionsCompat.
         makeSceneTransitionAnimation(getActivity(), sharedView, getString(R.string.shared_image));
-    startActivity(MovieDetailActivity.newIntent(getActivity(), movieEntity), options.toBundle());
+    startActivity(MovieDetailActivity.newIntent(getActivity(), movieEntity.getId()),
+        options.toBundle());
   }
 }
