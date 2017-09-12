@@ -19,7 +19,7 @@ android {
   buildTypes {
     debug{
       buildConfigField "String", "API_URL", '"https://api.themoviedb.org/3/"'
-      buildConfigField "String", "API_KEY", '"KEY_HERE"'
+        buildConfigField "String", "API_KEY", TMDBApiKey
     }
 
     release {

@@ -10,10 +10,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
 import com.malouane.popularmovies.R;
 import com.malouane.popularmovies.databinding.ActivityMovieDetailBinding;
-import dagger.android.AndroidInjection;
+
 import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
 
 public class MovieDetailActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
@@ -41,9 +44,14 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
     assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    binding.setPosterPath(getIntent().getStringExtra(KEY_MOVIE_POSTER));
-    movieDetailViewModel.getMovieWithId(getIntent().getIntExtra(KEY_MOVIE_ID, 0))
-        .observe(this, movie -> binding.setMovie(movie));
+    Bundle bundle = getIntent().getExtras();
+    if (bundle != null) {
+      if (bundle.containsKey(KEY_MOVIE_POSTER) && bundle.containsKey(KEY_MOVIE_ID)) {
+        binding.setPosterPath(getIntent().getStringExtra(KEY_MOVIE_POSTER));
+        movieDetailViewModel.getMovieWithId(getIntent().getIntExtra(KEY_MOVIE_ID, 0))
+                .observe(this, movie -> binding.setMovie(movie));
+      }
+    }
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
