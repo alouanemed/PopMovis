@@ -2,13 +2,16 @@ package com.malouane.popularmovies.ui.main;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+
 import com.malouane.popularmovies.data.DataManager;
 import com.malouane.popularmovies.data.network.MoviesApiResponse;
 import com.malouane.popularmovies.vm.BaseViewModel;
+
+import javax.inject.Inject;
+
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import javax.inject.Inject;
 
 public class MovieListViewModel extends BaseViewModel {
 
@@ -21,11 +24,20 @@ public class MovieListViewModel extends BaseViewModel {
   }
 
   public LiveData<MoviesApiResponse> getMoviesList(String listType) {
-    assert moviesList.getValue() != null;
-    if (moviesList == null || moviesList.getValue().getResults().isEmpty()) {
+    boolean shouldGetData = false;
+
+    if (moviesList == null) {
+      shouldGetData = true;
+    } else {
+      if (moviesList.getValue() == null)
+        shouldGetData = true;
+    }
+
+    if (shouldGetData) {
       moviesList = new MutableLiveData<>();
       loadMoviesList(moviesList, listType);
     }
+
     return moviesList;
   }
 
