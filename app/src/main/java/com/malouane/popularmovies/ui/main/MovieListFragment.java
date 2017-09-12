@@ -1,6 +1,7 @@
 package com.malouane.popularmovies.ui.main;
 
 import android.arch.lifecycle.LifecycleFragment;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -11,12 +12,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.malouane.popularmovies.R;
 import com.malouane.popularmovies.data.MovieEntity;
 import com.malouane.popularmovies.databinding.FragmentMovieListBinding;
 import com.malouane.popularmovies.ui.detail.MovieDetailActivity;
-import dagger.android.support.AndroidSupportInjection;
+
 import javax.inject.Inject;
+
+import dagger.android.support.AndroidSupportInjection;
 
 public class MovieListFragment extends LifecycleFragment implements MovieListCallback {
 
@@ -42,7 +46,11 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentMovieListBinding.inflate(inflater, container, false);
-    binding.recyclerViewMoviesList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+    if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+      binding.recyclerViewMoviesList.setLayoutManager(new GridLayoutManager(getContext(), 2));
+    } else {
+      binding.recyclerViewMoviesList.setLayoutManager(new GridLayoutManager(getContext(), 4));
+    }
     adapter = new MovieListAdapter(this);
     binding.recyclerViewMoviesList.setAdapter(adapter);
     return binding.getRoot();
