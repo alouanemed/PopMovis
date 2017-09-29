@@ -1,17 +1,18 @@
 package com.malouane.popularmovies.data.network;
 
 import com.google.gson.annotations.SerializedName;
-import com.malouane.popularmovies.data.MovieEntity;
+
 import java.util.List;
 
-public class MoviesApiResponse {
-  @SerializedName("results") private List<MovieEntity> results;
+public class MoviesApiResponse<T> {
+    @SerializedName("results")
+    private List<T> results;
 
-  public List<MovieEntity> getResults() {
+    public List<T> getResults() {
     return results;
   }
 
-  public void setResults(List<MovieEntity> results) {
+    public void setResults(List<T> results) {
     this.results = results;
   }
 }

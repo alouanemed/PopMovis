@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.malouane.popularmovies.R;
-import com.malouane.popularmovies.data.MovieEntity;
+import com.malouane.popularmovies.data.entity.MovieEntity;
 import com.malouane.popularmovies.databinding.FragmentMovieListBinding;
 import com.malouane.popularmovies.ui.detail.MovieDetailActivity;
 

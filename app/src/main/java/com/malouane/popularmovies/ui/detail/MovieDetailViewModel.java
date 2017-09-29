@@ -2,18 +2,26 @@ package com.malouane.popularmovies.ui.detail;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+
 import com.malouane.popularmovies.data.DataManager;
-import com.malouane.popularmovies.data.MovieDetailEntity;
+import com.malouane.popularmovies.data.entity.MovieDetailEntity;
+import com.malouane.popularmovies.data.entity.MovieReviewEntity;
+import com.malouane.popularmovies.data.entity.MovieTrailerEntity;
+import com.malouane.popularmovies.data.network.MoviesApiResponse;
 import com.malouane.popularmovies.vm.BaseViewModel;
+
+import javax.inject.Inject;
+
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import javax.inject.Inject;
 
 public class MovieDetailViewModel extends BaseViewModel {
 
   private DataManager dataManager;
   private MutableLiveData<MovieDetailEntity> movie;
+  private MutableLiveData<MoviesApiResponse<MovieReviewEntity>> movieReviews;
+  private MutableLiveData<MoviesApiResponse<MovieTrailerEntity>> movieTrailers;
 
   @Inject public MovieDetailViewModel(DataManager dataManager) {
     this.dataManager = dataManager;
@@ -22,20 +30,50 @@ public class MovieDetailViewModel extends BaseViewModel {
   public LiveData<MovieDetailEntity> getMovieWithId(int movieId) {
     if (movie == null) {
       movie = new MutableLiveData<>();
-      loadMoviesList(movie, movieId);
+      movieReviews = new MutableLiveData<>();
+      movieTrailers = new MutableLiveData<>();
+      loadMovieDetails(movie, movieReviews, movieTrailers, movieId);
     }
     return movie;
   }
 
-  private void loadMoviesList(MutableLiveData<MovieDetailEntity> movie, int movieId) {
+  public MutableLiveData<MoviesApiResponse<MovieReviewEntity>> getMovieReviews() {
+    return movieReviews;
+  }
+
+  public MutableLiveData<MoviesApiResponse<MovieTrailerEntity>> getMovieTrailers() {
+    return movieTrailers;
+  }
+
+  private void loadMovieDetails(MutableLiveData<MovieDetailEntity> movie, MutableLiveData<MoviesApiResponse<MovieReviewEntity>> movieReviews, MutableLiveData<MoviesApiResponse<MovieTrailerEntity>> movieTrailers, int movieId) {
     addDisposable(performGeMovie(movieId).subscribe((movieDetailEntity, throwable) -> {
       if (movieDetailEntity != null) movie.setValue(movieDetailEntity);
+    }));
+
+    addDisposable(performGeMovieReviews(movieId).subscribe((review, throwable) -> {
+      if (review != null) movieReviews.setValue(review);
+    }));
+
+    addDisposable(performGeMovieTrailers(movieId).subscribe((trailer, throwable) -> {
+      if (trailer != null) movieTrailers.setValue(trailer);
     }));
   }
 
   private Single<MovieDetailEntity> performGeMovie(int movieId) {
     return dataManager.performGetMovie(movieId)
-        .subscribeOn(Schedulers.newThread())
-        .observeOn(AndroidSchedulers.mainThread());
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread());
+  }
+
+  private Single<MoviesApiResponse<MovieReviewEntity>> performGeMovieReviews(int movieId) {
+    return dataManager.performGetMovieReviews(movieId)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread());
+  }
+
+  private Single<MoviesApiResponse<MovieTrailerEntity>> performGeMovieTrailers(int movieId) {
+    return dataManager.performGetMovieTrailers(movieId)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread());
   }
 }

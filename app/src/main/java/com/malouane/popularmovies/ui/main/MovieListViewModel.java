@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.malouane.popularmovies.data.DataManager;
+import com.malouane.popularmovies.data.entity.MovieEntity;
 import com.malouane.popularmovies.data.network.MoviesApiResponse;
 import com.malouane.popularmovies.vm.BaseViewModel;
 
@@ -15,7 +16,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MovieListViewModel extends BaseViewModel {
 
-  private MutableLiveData<MoviesApiResponse> moviesList;
+    private MutableLiveData<MoviesApiResponse<MovieEntity>> moviesList;
   private DataManager dataManager;
 
 
@@ -23,7 +24,7 @@ public class MovieListViewModel extends BaseViewModel {
     this.dataManager = dataManager;
   }
 
-  public LiveData<MoviesApiResponse> getMoviesList(String listType) {
+    public LiveData<MoviesApiResponse<MovieEntity>> getMoviesList(String listType) {
     boolean shouldGetData = false;
 
     if (moviesList == null) {
@@ -41,12 +42,12 @@ public class MovieListViewModel extends BaseViewModel {
     return moviesList;
   }
 
-  private void loadMoviesList(MutableLiveData<MoviesApiResponse> moviesList, String listType) {
+    private void loadMoviesList(MutableLiveData<MoviesApiResponse<MovieEntity>> moviesList, String listType) {
     addDisposable(performGeMovies(listType).subscribe(
         (moviesApiResponse, throwable) -> moviesList.setValue(moviesApiResponse)));
   }
 
-  private Single<MoviesApiResponse> performGeMovies(String listType) {
+    private Single<MoviesApiResponse<MovieEntity>> performGeMovies(String listType) {
     return dataManager.performGetMovies(listType)
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread());

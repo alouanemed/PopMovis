@@ -4,9 +4,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import com.malouane.popularmovies.data.MovieEntity;
+
+import com.malouane.popularmovies.data.entity.MovieEntity;
 import com.malouane.popularmovies.databinding.ItemMovieBinding;
 import com.malouane.popularmovies.ui.BaseAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
