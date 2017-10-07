@@ -1,5 +1,7 @@
 package com.malouane.popularmovies.di;
 
+import android.app.Application;
+
 import com.malouane.popularmovies.BuildConfig;
 import com.malouane.popularmovies.data.DataManager;
 import com.malouane.popularmovies.data.MovieDBService;
@@ -7,10 +9,12 @@ import com.malouane.popularmovies.data.network.ApiConstants;
 import com.malouane.popularmovies.data.network.IMoviesHttp;
 import com.malouane.popularmovies.data.network.MoviesHttp;
 import com.malouane.popularmovies.data.network.RequestInterceptor;
+
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.schedulers.Schedulers;
-import javax.inject.Singleton;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -45,8 +49,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
         .create(MovieDBService.class);
   }
 
-  @Provides @Singleton DataManager provideDataManager(IMoviesHttp http) {
-    return new DataManager(http);
+  @Provides
+  @Singleton
+  DataManager provideDataManager(IMoviesHttp http, Application app) {
+    return new DataManager(http, app);
   }
 
   @Provides @Singleton IMoviesHttp provideHttpHelper(MoviesHttp http) {

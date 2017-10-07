@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 
 
 public class FavoritesMovieContract {
-    public static final String AUTHORITY = "com.malouane.popularmovies";
+    public static final String AUTHORITY = "com.malouane.popularmovies.provider";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
     public static final String PATH_FAVORITES = "favorites";
 

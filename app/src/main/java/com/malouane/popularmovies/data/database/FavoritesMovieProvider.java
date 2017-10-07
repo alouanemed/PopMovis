@@ -1,6 +1,5 @@
 package com.malouane.popularmovies.data.database;
 
-
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -11,6 +10,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import timber.log.Timber;
 
 public class FavoritesMovieProvider extends ContentProvider {
 
@@ -23,7 +24,7 @@ public class FavoritesMovieProvider extends ContentProvider {
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
         uriMatcher.addURI(FavoritesMovieContract.AUTHORITY, FavoritesMovieContract.PATH_FAVORITES, FAVORITES);
-        uriMatcher.addURI(FavoritesMovieContract.AUTHORITY, FavoritesMovieContract.PATH_FAVORITES + "/#", FAB_MOVIE_ID);
+        uriMatcher.addURI(FavoritesMovieContract.AUTHORITY, FavoritesMovieContract.PATH_FAVORITES + "/*", FAB_MOVIE_ID);
 
         return uriMatcher;
     }
@@ -42,14 +43,29 @@ public class FavoritesMovieProvider extends ContentProvider {
         final SQLiteDatabase db = mDBHelper.getReadableDatabase();
         int match = sUriMatcher.match(uri);
         Cursor returnCursor;
-
+        Timber.d("match ; " + match);
         switch (match) {
             case FAVORITES:
                 returnCursor = db.query(FavoritesMovieContract.FavoritesMovies.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
-            default:
-                throw new UnsupportedOperationException("unknown_uri" + uri);
 
+            case FAB_MOVIE_ID: {
+                String movieId = uri.getLastPathSegment();
+                String[] selectionArguments = new String[]{movieId};
+
+                returnCursor = db.query(
+                        FavoritesMovieContract.FavoritesMovies.TABLE_NAME,
+                        projection,
+                        FavoritesMovieContract.FavoritesMovies.COLUMN_MOVIE_ID + " = ? ",
+                        selectionArguments,
+                        null,
+                        null,
+                        sortOrder);
+
+                break;
+            }
+            default:
+                throw new UnsupportedOperationException("unknown_uri " + uri);
         }
 
         returnCursor.setNotificationUri(getContext().getContentResolver(), uri);

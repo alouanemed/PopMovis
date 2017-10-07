@@ -28,7 +28,12 @@
         android:name=".ui.detail.MovieDetailActivity"
         android:theme="@style/MovieDetailTheme"/>
 
+    <provider
 
+        android:name=".data.database.FavoritesMovieProvider"
+        android:authorities="com.malouane.popularmovies.provider"
+        android:exported="true"
+        android:permission="com.malouane.popularmovies.provider.READ_WRITE" />
   </application>
 
 </manifest>

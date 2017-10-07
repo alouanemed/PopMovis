@@ -2,6 +2,8 @@ package com.malouane.popularmovies.ui.detail;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
+import android.support.annotation.NonNull;
 
 import com.malouane.popularmovies.data.DataManager;
 import com.malouane.popularmovies.data.entity.MovieDetailEntity;
@@ -18,6 +20,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MovieDetailViewModel extends BaseViewModel {
 
+  private final MutableLiveData<Integer> movieId = new MutableLiveData<>();
+  private final LiveData<Boolean> isFavorite;
   private DataManager dataManager;
   private MutableLiveData<MovieDetailEntity> movie;
   private MutableLiveData<MoviesApiResponse<MovieReviewEntity>> movieReviews;
@@ -25,16 +29,24 @@ public class MovieDetailViewModel extends BaseViewModel {
 
   @Inject public MovieDetailViewModel(DataManager dataManager) {
     this.dataManager = dataManager;
+    isFavorite = Transformations.switchMap(movieId, dataManager::query);
   }
 
-  public LiveData<MovieDetailEntity> getMovieWithId(int movieId) {
+  public LiveData<MovieDetailEntity> getMovieDetails() {
     if (movie == null) {
       movie = new MutableLiveData<>();
       movieReviews = new MutableLiveData<>();
       movieTrailers = new MutableLiveData<>();
-      loadMovieDetails(movie, movieReviews, movieTrailers, movieId);
+      loadMovieDetails(movie, movieReviews, movieTrailers, movieId.getValue());
     }
     return movie;
+  }
+
+  void setMovieId(@NonNull final Integer id) {
+    if (id.equals(this.movieId.getValue())) {
+      return;
+    }
+    this.movieId.setValue(id);
   }
 
   public MutableLiveData<MoviesApiResponse<MovieReviewEntity>> getMovieReviews() {
@@ -45,7 +57,7 @@ public class MovieDetailViewModel extends BaseViewModel {
     return movieTrailers;
   }
 
-  private void loadMovieDetails(MutableLiveData<MovieDetailEntity> movie, MutableLiveData<MoviesApiResponse<MovieReviewEntity>> movieReviews, MutableLiveData<MoviesApiResponse<MovieTrailerEntity>> movieTrailers, int movieId) {
+  private void loadMovieDetails(MutableLiveData<MovieDetailEntity> movie, MutableLiveData<MoviesApiResponse<MovieReviewEntity>> movieReviews, MutableLiveData<MoviesApiResponse<MovieTrailerEntity>> movieTrailers, @NonNull int movieId) {
     addDisposable(performGeMovie(movieId).subscribe((movieDetailEntity, throwable) -> {
       if (movieDetailEntity != null) movie.setValue(movieDetailEntity);
     }));
@@ -75,5 +87,19 @@ public class MovieDetailViewModel extends BaseViewModel {
     return dataManager.performGetMovieTrailers(movieId)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread());
+  }
+
+  public LiveData<Boolean> performFavorites(MovieDetailEntity movie) {
+    return dataManager.performFavorites(movie);
+  }
+
+  @NonNull
+  LiveData<Boolean> isFavorite() {
+    return isFavorite;
+  }
+
+  void retry() {
+    if (this.movieId.getValue() != null)
+      this.movieId.setValue(this.movieId.getValue());
   }
 }
