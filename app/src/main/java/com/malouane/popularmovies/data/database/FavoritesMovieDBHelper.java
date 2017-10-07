@@ -28,8 +28,7 @@ public class FavoritesMovieDBHelper extends SQLiteOpenHelper {
                 FavoritesMovies.COLUMN_POPULARITY + " REAL NOT NULL, " +
                 FavoritesMovies.COLUMN_VOTE_AVERAGE + " REAL NOT NULL, " +
                 FavoritesMovies.COLUMN_POSTER_PATH + " TEXT NOT NULL, " +
-                FavoritesMovies.COLUMN_BACKDROP_PATH + " TEXT NOT NULL, " +
-                FavoritesMovies.COLUMN_GENRES + " TEXT NOT NULL" + ");";
+                FavoritesMovies.COLUMN_BACKDROP_PATH + " TEXT NOT NULL );";
 
         db.execSQL(SQL_CREATE_FAVORITES_TABLE);
     }

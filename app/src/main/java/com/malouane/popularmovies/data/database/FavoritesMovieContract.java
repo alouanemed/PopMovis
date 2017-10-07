@@ -22,7 +22,6 @@ public class FavoritesMovieContract {
         public static final String COLUMN_VOTE_AVERAGE = "vote_average";
         public static final String COLUMN_POSTER_PATH = "poster_path";
         public static final String COLUMN_BACKDROP_PATH = "backdrop_path";
-        public static final String COLUMN_GENRES = "genres";
 
         public static final String[] PROJECTION = new String[]{
                 _ID,
@@ -33,8 +32,7 @@ public class FavoritesMovieContract {
                 COLUMN_POPULARITY,
                 COLUMN_VOTE_AVERAGE,
                 COLUMN_POSTER_PATH,
-                COLUMN_BACKDROP_PATH,
-                COLUMN_GENRES
+                COLUMN_BACKDROP_PATH
         };
 
         public static final int INDEX_COLUMN_ID = 1;
@@ -45,6 +43,5 @@ public class FavoritesMovieContract {
         public static final int INDEX_COLUMN_VOTE = 6;
         public static final int INDEX_COLUMN_POSTER = 7;
         public static final int INDEX_COLUMN_BACKDROP = 8;
-        public static final int INDEX_COLUMN_GENRES = 9;
     }
 }

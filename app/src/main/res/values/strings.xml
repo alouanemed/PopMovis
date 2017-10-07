@@ -9,4 +9,5 @@
 
   <string name="shared_image">shared_image</string>
   <string name="description_movie_poster">movie poster</string>
+    <string name="reviews">reviews</string>
 </resources>

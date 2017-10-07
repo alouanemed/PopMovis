@@ -10,5 +10,5 @@ public class ApiConstants {
   public static final String BASE_URL = BuildConfig.API_URL;
   public static final String API_KEY = BuildConfig.API_KEY;
 
-  public static final String IMAGE_ENDPOINT_PREFIX = "https://image.tmdb.org/t/p/w185/";
+    public static final String IMAGE_ENDPOINT_PREFIX = "https://image.tmdb.org/t/p/w300%s";
 }

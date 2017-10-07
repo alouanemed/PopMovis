@@ -53,7 +53,7 @@ public class MovieListAdapter extends BaseAdapter<MovieListAdapter.MovieViewHold
       this.binding = binding;
       binding.getRoot()
           .setOnClickListener(
-              v -> callback.onMovieClicked(binding.getMovie(), binding.imageViewCover));
+                  v -> callback.onMovieClicked(binding.getMovie(), binding.ivCover));
     }
 
     public static MovieViewHolder create(LayoutInflater inflater, ViewGroup parent,

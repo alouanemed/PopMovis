@@ -7,10 +7,6 @@ import android.support.annotation.NonNull;
 import com.malouane.popularmovies.data.database.FavoritesMovieContract;
 import com.malouane.popularmovies.data.entity.MovieDetailEntity;
 
-/**
- * Created by alouanemed on 10/5/2017.
- */
-
 public class PopMovisUtils {
 
     public static ContentValues toContentValues(@NonNull final MovieDetailEntity movie) {
@@ -21,7 +17,7 @@ public class PopMovisUtils {
         values.put(FavoritesMovieContract.FavoritesMovies.COLUMN_OVERVIEW, movie.getOverview());
         values.put(FavoritesMovieContract.FavoritesMovies.COLUMN_POSTER_PATH, movie.getPosterPath());
         values.put(FavoritesMovieContract.FavoritesMovies.COLUMN_BACKDROP_PATH, movie.getBackdropPath());
-        //values.put(FavoritesMovieContract.FavoritesMovies.COLUMN_POPULARITY, movie.getPopularity());
+        values.put(FavoritesMovieContract.FavoritesMovies.COLUMN_POPULARITY, movie.getPopularity());
         values.put(FavoritesMovieContract.FavoritesMovies.COLUMN_VOTE_AVERAGE, movie.getVoteAverage());
         return values;
     }
