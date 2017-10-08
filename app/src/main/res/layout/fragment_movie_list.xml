@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-  <data>
+    <data>
 
-      <variable
-        name="moviesList"
-        type="com.malouane.popularmovies.data.network.MoviesApiResponse"
-        />
-  </data>
+        <variable
+            name="moviesList"
+            type="com.malouane.popularmovies.data.network.MoviesApiResponse" />
+    </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,12 +30,6 @@
             android:id="@+id/recyclerView_movies_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:clipToPadding="false"
-            android:focusable="false"
-            android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             app:data="@{moviesList}"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintLeft_toLeftOf="parent"

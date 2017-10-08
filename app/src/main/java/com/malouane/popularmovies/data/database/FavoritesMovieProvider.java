@@ -11,8 +11,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import timber.log.Timber;
-
 public class FavoritesMovieProvider extends ContentProvider {
 
     public static final int FAV_MOVIES = 100;
@@ -43,7 +41,6 @@ public class FavoritesMovieProvider extends ContentProvider {
         final SQLiteDatabase db = mDBHelper.getReadableDatabase();
         int match = sUriMatcher.match(uri);
         Cursor returnCursor;
-        Timber.d("match ; " + match);
         switch (match) {
             case FAV_MOVIES:
                 returnCursor = db.query(FavoritesMovieContract.FavoritesMovies.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);

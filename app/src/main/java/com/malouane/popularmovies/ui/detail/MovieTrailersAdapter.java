@@ -54,9 +54,14 @@ public class MovieTrailersAdapter extends BaseAdapter<MovieTrailersAdapter.Movie
         public MovieTrailerViewHolder(ItemMovieTrailerBinding binding, TrailerListCallback callback) {
             super(binding.getRoot());
             this.binding = binding;
+
             binding.getRoot()
                     .setOnClickListener(
                             v -> callback.onTrailerClicked(binding.getTrailer()));
+            binding.ivShare
+                    .setOnClickListener(
+                            v -> callback.onTrailerShareClicked(binding.getTrailer().getKey()));
+
         }
 
         public static MovieTrailersAdapter.MovieTrailerViewHolder create(LayoutInflater inflater, ViewGroup parent, TrailerListCallback callback) {

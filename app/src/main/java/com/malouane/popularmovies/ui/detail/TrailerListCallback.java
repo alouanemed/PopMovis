@@ -4,4 +4,6 @@ import com.malouane.popularmovies.data.entity.MovieTrailerEntity;
 
 interface TrailerListCallback {
     void onTrailerClicked(MovieTrailerEntity trailerEntity);
+
+    void onTrailerShareClicked(String ytKey);
 }

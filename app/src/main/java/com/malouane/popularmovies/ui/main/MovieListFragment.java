@@ -93,6 +93,7 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
+
       case R.id.action_sort_top:
         getMoviesSortedBy("top_rated", true);
         return true;
