@@ -86,6 +86,43 @@ public class DataManager implements IMoviesHttp {
   }
 
   @NonNull
+  public LiveData<MoviesApiResponse<MovieEntity>> query() {
+
+    return new LiveData<MoviesApiResponse<MovieEntity>>() {
+
+      @Override
+      protected void onActive() {
+        super.onActive();
+        final Cursor cursor = app
+                .getContentResolver()
+                .query(FavoritesMovieContract.FavoritesMovies.CONTENT_URI,
+                        null,
+                        null,
+                        null,
+                        null
+                );
+        try {
+          if (cursor != null) {
+            if (cursor.getCount() > 0) {
+              cursor.moveToFirst();
+              MoviesApiResponse data = new MoviesApiResponse<MovieDetailEntity>();
+              data.setResults(PopMovisUtils.toMoviesResultList(cursor));
+              postValue(data);
+            } else {
+              postValue(null);
+            }
+          }
+        } finally {
+          if (cursor != null) {
+            cursor.close();
+          }
+        }
+      }
+    };
+  }
+
+
+  @NonNull
   public LiveData<Boolean> performFavorites(@NonNull final MovieDetailEntity movie) {
     return Transformations.switchMap(this.query(movie.getId()), isFavorite -> isFavorite ? this.removeFromFavorites(movie) : this.addToFavorites(movie));
   }

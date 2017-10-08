@@ -68,6 +68,14 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
             });
   }
 
+
+  private void getFavoriteMovies() {
+    movieListViewModel.getFavoriteMoviesList()
+            .observe(this, listResource -> {
+              binding.setMoviesList(listResource);
+            });
+  }
+
   private void clearList() {
     adapter.clearData();
   }
@@ -86,6 +94,10 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
       case R.id.action_sort_popular:
         clearList();
         getMoviesSortedBy("popular");
+        return true;
+      case R.id.action_sort_favorite:
+        clearList();
+        getFavoriteMovies();
         return true;
       default:
         return super.onOptionsItemSelected(item);

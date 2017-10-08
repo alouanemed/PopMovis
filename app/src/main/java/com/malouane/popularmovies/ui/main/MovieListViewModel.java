@@ -17,6 +17,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MovieListViewModel extends BaseViewModel {
 
     private MutableLiveData<MoviesApiResponse<MovieEntity>> moviesList;
+    private LiveData<MoviesApiResponse<MovieEntity>> favoriteMoviesList;
   private DataManager dataManager;
 
 
@@ -41,6 +42,13 @@ public class MovieListViewModel extends BaseViewModel {
 
     return moviesList;
   }
+
+    public LiveData<MoviesApiResponse<MovieEntity>> getFavoriteMoviesList() {
+        if (favoriteMoviesList == null)
+            favoriteMoviesList = dataManager.query();
+
+        return favoriteMoviesList;
+    }
 
     private void loadMoviesList(MutableLiveData<MoviesApiResponse<MovieEntity>> moviesList, String listType) {
     addDisposable(performGeMovies(listType).subscribe(

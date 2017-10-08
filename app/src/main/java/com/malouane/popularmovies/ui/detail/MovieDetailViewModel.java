@@ -17,7 +17,6 @@ import javax.inject.Inject;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import timber.log.Timber;
 
 public class MovieDetailViewModel extends BaseViewModel {
 
@@ -91,7 +90,6 @@ public class MovieDetailViewModel extends BaseViewModel {
   }
 
   public LiveData<Boolean> performFavorites(MovieDetailEntity movie) {
-      Timber.d("Fav id " + movie.getId());
     return dataManager.performFavorites(movie);
   }
 

@@ -8,6 +8,10 @@
       android:title="@string/action_sort_popular"
       app:showAsAction="never"/>
   <item
+      android:id="@+id/action_sort_favorite"
+      android:title="@string/action_sort_fav"
+      app:showAsAction="never" />
+    <item
       android:id="@+id/action_sort_top"
       android:orderInCategory="10"
       android:title="@string/action_sort_top"

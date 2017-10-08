@@ -3,6 +3,7 @@
   <string name="title_activity_main2">Main2Activity</string>
   <string name="action_sort">Sort</string>
   <string name="action_sort_popular">Most Popular</string>
+    <string name="action_sort_fav">Favorites</string>
   <string name="action_sort_top">Top Rated</string>
   <string name="title_detail_overview">Overview</string>
   <string name="title_detail_genre">Genres</string>

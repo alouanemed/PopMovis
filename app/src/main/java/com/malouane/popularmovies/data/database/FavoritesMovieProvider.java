@@ -15,16 +15,16 @@ import timber.log.Timber;
 
 public class FavoritesMovieProvider extends ContentProvider {
 
-    public static final int FAVORITES = 100;
-    public static final int FAB_MOVIE_ID = 101;
+    public static final int FAV_MOVIES = 100;
+    public static final int FAV_MOVIE_ID = 101;
     public UriMatcher sUriMatcher = buildUriMatcher();
     private FavoritesMovieDBHelper mDBHelper;
 
     public static UriMatcher buildUriMatcher() {
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
-        uriMatcher.addURI(FavoritesMovieContract.AUTHORITY, FavoritesMovieContract.PATH_FAVORITES, FAVORITES);
-        uriMatcher.addURI(FavoritesMovieContract.AUTHORITY, FavoritesMovieContract.PATH_FAVORITES + "/*", FAB_MOVIE_ID);
+        uriMatcher.addURI(FavoritesMovieContract.AUTHORITY, FavoritesMovieContract.PATH_FAVORITES, FAV_MOVIES);
+        uriMatcher.addURI(FavoritesMovieContract.AUTHORITY, FavoritesMovieContract.PATH_FAVORITES + "/*", FAV_MOVIE_ID);
 
         return uriMatcher;
     }
@@ -45,11 +45,11 @@ public class FavoritesMovieProvider extends ContentProvider {
         Cursor returnCursor;
         Timber.d("match ; " + match);
         switch (match) {
-            case FAVORITES:
+            case FAV_MOVIES:
                 returnCursor = db.query(FavoritesMovieContract.FavoritesMovies.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
 
-            case FAB_MOVIE_ID: {
+            case FAV_MOVIE_ID: {
                 String movieId = uri.getLastPathSegment();
                 String[] selectionArguments = new String[]{movieId};
 
@@ -87,7 +87,7 @@ public class FavoritesMovieProvider extends ContentProvider {
         Uri returnUri;
 
         switch (match) {
-            case FAVORITES:
+            case FAV_MOVIES:
                 long id = db.insert(FavoritesMovieContract.FavoritesMovies.TABLE_NAME, null, values);
                 if (id > 0) {
                     returnUri = ContentUris.withAppendedId(FavoritesMovieContract.FavoritesMovies.CONTENT_URI, id);
@@ -111,7 +111,7 @@ public class FavoritesMovieProvider extends ContentProvider {
         int numRowDeleted;
 
         switch (match) {
-            case FAB_MOVIE_ID:
+            case FAV_MOVIE_ID:
                 numRowDeleted = db.delete(FavoritesMovieContract.FavoritesMovies.TABLE_NAME,
                         FavoritesMovieContract.FavoritesMovies.COLUMN_MOVIE_ID + "=?",
                         new String[]{uri.getLastPathSegment()});
