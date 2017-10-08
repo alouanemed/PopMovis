@@ -63,7 +63,9 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
 
   private void getMoviesSortedBy(String sort) {
     movieListViewModel.getMoviesList(sort)
-        .observe(this, listResource -> binding.setMoviesList(listResource));
+            .observe(this, listResource -> {
+              binding.setMoviesList(listResource);
+            });
   }
 
   private void clearList() {
