@@ -21,6 +21,10 @@ jobs:
 
       - checkout
 
+      - run:
+          name: make wgradle exec
+          command: chmod +x gradlew
+
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
