@@ -58,22 +58,28 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
 
   @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    getMoviesSortedBy("popular");
+    getMoviesSortedBy("popular", false);
   }
 
-  private void getMoviesSortedBy(String sort) {
-    movieListViewModel.getMoviesList(sort)
+  private void getMoviesSortedBy(String sort, boolean forceUpdate) {
+    movieListViewModel.getMoviesList(forceUpdate, sort)
             .observe(this, listResource -> {
+              hideLoading();
               binding.setMoviesList(listResource);
             });
   }
-
 
   private void getFavoriteMovies() {
     movieListViewModel.getFavoriteMoviesList()
             .observe(this, listResource -> {
+              hideLoading();
               binding.setMoviesList(listResource);
             });
+  }
+
+  private void hideLoading() {
+    binding.recyclerViewMoviesList.setVisibility(View.VISIBLE);
+    binding.pbLoading.setVisibility(View.GONE);
   }
 
   private void clearList() {
@@ -88,15 +94,12 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.action_sort_top:
-        clearList();
-        getMoviesSortedBy("top_rated");
+        getMoviesSortedBy("top_rated", true);
         return true;
       case R.id.action_sort_popular:
-        clearList();
-        getMoviesSortedBy("popular");
+        getMoviesSortedBy("popular", true);
         return true;
       case R.id.action_sort_favorite:
-        clearList();
         getFavoriteMovies();
         return true;
       default:

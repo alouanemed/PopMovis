@@ -18,30 +18,28 @@ public class MovieListViewModel extends BaseViewModel {
 
     private MutableLiveData<MoviesApiResponse<MovieEntity>> moviesList;
     private LiveData<MoviesApiResponse<MovieEntity>> favoriteMoviesList;
-  private DataManager dataManager;
+    private DataManager dataManager;
 
-
-  @Inject public MovieListViewModel(DataManager dataManager) {
-    this.dataManager = dataManager;
-  }
-
-    public LiveData<MoviesApiResponse<MovieEntity>> getMoviesList(String listType) {
-    boolean shouldGetData = false;
-
-    if (moviesList == null) {
-      shouldGetData = true;
-    } else {
-      if (moviesList.getValue() == null)
-        shouldGetData = true;
+    @Inject
+    public MovieListViewModel(DataManager dataManager) {
+        this.dataManager = dataManager;
     }
 
-    if (shouldGetData) {
-      moviesList = new MutableLiveData<>();
-      loadMoviesList(moviesList, listType);
-    }
+    public LiveData<MoviesApiResponse<MovieEntity>> getMoviesList(boolean shouldGetData, String listType) {
+        if (moviesList == null) {
+            shouldGetData = true;
+        } else {
+            if (moviesList.getValue() == null)
+                shouldGetData = true;
+        }
 
-    return moviesList;
-  }
+        if (shouldGetData) {
+            moviesList = new MutableLiveData<>();
+            loadMoviesList(moviesList, listType);
+        }
+
+        return moviesList;
+    }
 
     public LiveData<MoviesApiResponse<MovieEntity>> getFavoriteMoviesList() {
         if (favoriteMoviesList == null)
@@ -51,13 +49,13 @@ public class MovieListViewModel extends BaseViewModel {
     }
 
     private void loadMoviesList(MutableLiveData<MoviesApiResponse<MovieEntity>> moviesList, String listType) {
-    addDisposable(performGeMovies(listType).subscribe(
-        (moviesApiResponse, throwable) -> moviesList.setValue(moviesApiResponse)));
-  }
+        addDisposable(performGeMovies(listType).subscribe(
+                (moviesApiResponse, throwable) -> moviesList.setValue(moviesApiResponse)));
+    }
 
     private Single<MoviesApiResponse<MovieEntity>> performGeMovies(String listType) {
-    return dataManager.performGetMovies(listType)
-        .subscribeOn(Schedulers.newThread())
-        .observeOn(AndroidSchedulers.mainThread());
-  }
+        return dataManager.performGetMovies(listType)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }
