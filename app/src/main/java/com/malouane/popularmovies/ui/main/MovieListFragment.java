@@ -62,24 +62,26 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
   }
 
   private void getMoviesSortedBy(String sort, boolean forceUpdate) {
+    hideLoading(false);
     movieListViewModel.getMoviesList(forceUpdate, sort)
             .observe(this, listResource -> {
-              hideLoading();
+              hideLoading(true);
               binding.setMoviesList(listResource);
             });
   }
 
   private void getFavoriteMovies() {
+    hideLoading(false);
     movieListViewModel.getFavoriteMoviesList()
             .observe(this, listResource -> {
-              hideLoading();
+              hideLoading(true);
               binding.setMoviesList(listResource);
             });
   }
 
-  private void hideLoading() {
-    binding.recyclerViewMoviesList.setVisibility(View.VISIBLE);
-    binding.pbLoading.setVisibility(View.GONE);
+  private void hideLoading(boolean v) {
+    binding.recyclerViewMoviesList.setVisibility(v ? View.VISIBLE : View.GONE);
+    binding.pbLoading.setVisibility(v ? View.GONE : View.VISIBLE);
   }
 
   private void clearList() {
@@ -93,7 +95,6 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-
       case R.id.action_sort_top:
         getMoviesSortedBy("top_rated", true);
         return true;

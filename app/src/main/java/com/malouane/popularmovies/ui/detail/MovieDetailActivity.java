@@ -28,6 +28,8 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
 
   @Inject MovieDetailViewModel movieDetailViewModel;
 
+  MovieReviewsAdapter movieReviewsAdapter;
+
   public static Intent newIntent(Context context, int movieID, String posterPath) {
     Intent intent = new Intent(context, MovieDetailActivity.class);
     intent.putExtra(KEY_MOVIE_ID, movieID);

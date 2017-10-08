@@ -34,7 +34,7 @@
         tools:targetApi="lollipop"
         >
       <ImageView
-          android:id="@+id/imageViewCover"
+          android:id="@+id/iv_cover"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:contentDescription="@string/description_movie_poster"
@@ -44,7 +44,6 @@
           tools:targetApi="lollipop"
           />
     </android.support.v7.widget.CardView>
-
 
   </RelativeLayout>
 </layout>
