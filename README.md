@@ -7,9 +7,7 @@ An Android app built for Udacity Android nanodegree degree.
 
 ## Screens
 
-                Main View          |       Detail View                 
-:---------------------------------:|:-------------------------------:
-                             ![screens]
+![screens]
 
 
 ## API
