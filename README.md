@@ -24,7 +24,8 @@ Sign in to themoviedb.com and grab your API and then replace the value of `TMDBA
 * Room : soon.
 
 ## Thanks
-Thanks to Alfrey Davilla for his aweosme art : [dribbble][dribble-link]
+* Thanks to Alfrey Davilla for his aweosme art : [dribbble][dribble-link]
+* An Awesome [article][proandroiddevlink] to work with arch and dagger.
 
 [arch]: https://developer.android.com/arch
 [data-binding]: https://developer.android.com/topic/libraries/data-binding/index.html
@@ -37,3 +38,4 @@ Thanks to Alfrey Davilla for his aweosme art : [dribbble][dribble-link]
 [api-path]: https://github.com/alouanemed/PopMovis/blob/master/gradle.properties
 [screens]: https://github.com/alouanemed/PopMovis/blob/master/ART/popmovies-screenshot.png
 [dribble-link]: https://dribbble.com/shots/3511043-Movie-Time
+[proandroiddevlink]: https://proandroiddev.com/modern-android-development-with-kotlin-september-2017-part-2-17444fcdbe86
