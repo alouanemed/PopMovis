@@ -117,7 +117,7 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
 
   @Override
   public void onTrailerClicked(MovieTrailerEntity trailerEntity) {
-    PopMovisUtils.buildYouTubeLink(trailerEntity.getKey());
+    PopMovisUtils.openTrailer(this, PopMovisUtils.buildYouTubeLink(trailerEntity.getKey()));
   }
 
   @Override

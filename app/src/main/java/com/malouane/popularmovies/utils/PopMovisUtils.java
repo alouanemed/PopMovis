@@ -83,4 +83,10 @@ public class PopMovisUtils {
         share.putExtra(Intent.EXTRA_TEXT, buildYouTubeLink(ytKey));
         ctx.startActivity(Intent.createChooser(share, "Share Trailer"));
     }
+
+    public static void openTrailer(final Context context, @NonNull final String link) {
+        Intent share = new Intent(Intent.ACTION_VIEW);
+        share.setData(Uri.parse(link));
+        context.startActivity(share);
+    }
 }
