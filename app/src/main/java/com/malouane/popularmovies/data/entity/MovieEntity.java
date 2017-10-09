@@ -1,7 +1,8 @@
-package com.malouane.popularmovies.data;
+package com.malouane.popularmovies.data.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 public class MovieEntity implements Parcelable {
@@ -28,7 +29,8 @@ public class MovieEntity implements Parcelable {
   @SerializedName("original_language") private String originalLanguage;
   @SerializedName("release_date") private String releaseDate;
 
-  protected MovieEntity(Parcel in) {
+
+  public MovieEntity(Parcel in) {
     id = in.readInt();
     posterPath = in.readString();
     adult = in.readByte() != 0x00;
@@ -40,6 +42,20 @@ public class MovieEntity implements Parcelable {
     backdropPath = in.readString();
     originalLanguage = in.readString();
     releaseDate = in.readString();
+  }
+
+  public MovieEntity(int id, String poster, boolean b, String overview, String title, int i, double voteAverage, String backdropPath, String releaseDate) {
+    this.id = id;
+    this.posterPath = poster;
+    this.adult = b;
+    this.overview = overview;
+    this.title = title;
+    this.voteAverage = voteAverage;
+    this.backdropPath = backdropPath;
+    this.releaseDate = releaseDate;
+
+
+
   }
 
   public int getId() {
