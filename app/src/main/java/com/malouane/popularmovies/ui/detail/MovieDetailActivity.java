@@ -48,12 +48,26 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
 
     Bundle bundle = getIntent().getExtras();
     if (bundle != null) {
+
       if (bundle.containsKey(KEY_MOVIE_POSTER) && bundle.containsKey(KEY_MOVIE_ID)) {
+
+        movieDetailViewModel.isFavorite().observe(this, isFavorite -> {
+          if (isFavorite == null) isFavorite = false;
+          binding.favoriteFab.setImageResource(isFavorite ? R.drawable.ic_favorite_border_black_24dp : R.drawable.ic_favorite_black_24dp);
+          initFAB();
+        });
+
         binding.setPosterPath(getIntent().getStringExtra(KEY_MOVIE_POSTER));
-        movieDetailViewModel.getMovieWithId(getIntent().getIntExtra(KEY_MOVIE_ID, 0))
+        movieDetailViewModel.setMovieId(getIntent().getIntExtra(KEY_MOVIE_ID, 0));
+        movieDetailViewModel.getMovieDetails()
                 .observe(this, movie -> binding.setMovie(movie));
       }
     }
+  }
+
+  private void initFAB() {
+    binding.favoriteFab.setOnClickListener(view1 ->
+            movieDetailViewModel.performFavorites(binding.getMovie()).observe(this, aBoolean -> movieDetailViewModel.retry()));
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
