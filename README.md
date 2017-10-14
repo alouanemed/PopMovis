@@ -24,8 +24,8 @@ Sign in to themoviedb.com and grab your API and then replace the value of `TMDBA
 * Room : soon.
 
 ## Thanks
-* Thanks to Alfrey Davilla for his aweosme art : [dribbble][dribble-link]
-* An Awesome [article][proandroiddevlink] to work with arch and dagger.
+* Thanks to Alfrey Davilla for his awesome art : [dribbble][dribble-link]
+* An Awesome [article][proandroiddevlink] to work with the newest Android arch components and dagger.
 
 [arch]: https://developer.android.com/arch
 [data-binding]: https://developer.android.com/topic/libraries/data-binding/index.html
