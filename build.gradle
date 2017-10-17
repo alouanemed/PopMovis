@@ -62,4 +62,17 @@ ext {
     retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     retrofitGson = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     constrains = "com.android.support.constraint:constraint-layout:$constraintsVersion"
+
+    junitVersion = '4.12'
+    testRunnerVersion = '1.0.1'
+    espressoCoreVersion = '3.0.1'
+    espressoContribVersion = '2.2.2'
+    mockitoVersion = '2.11.0'
+
+    junit = "junit:junit:$junitVersion"
+    testRunner = "com.android.support.test:runner:$testRunnerVersion"
+    espressoCore = "com.android.support.test.espresso:espresso-core:$espressoCoreVersion"
+    espressoContrib = "com.android.support.test.espresso:espresso-contrib:$espressoContribVersion"
+    supportAnnotations = "com.android.support:support-annotations:$supportLibVersion"
+    mockito = "org.mockito:mockito-core:$mockitoVersion"
 }
