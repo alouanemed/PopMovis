@@ -23,6 +23,16 @@ Sign in to themoviedb.com and grab your API and then replace the value of `TMDBA
 * [SQLite][sqlite] 
 * Room : soon.
 
+## Contributing
+
+* Fork it
+* Create your feature branch (git checkout -b my-new-feature)
+* Commit your changes (git commit -am 'Add some feature')
+* Push to the branch (git push origin my-new-feature)
+* Create new Pull Request
+
+*Look at the issues and contribute accordingly.
+
 ## Thanks
 * Thanks to Alfrey Davilla for his awesome art : [dribbble][dribble-link]
 * An Awesome [article][proandroiddevlink] to work with the newest Android arch components and dagger.
