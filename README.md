@@ -1,9 +1,8 @@
 <img src="https://github.com/alouanemed/PopMovis/blob/master/ART/web_icon.png" height="150">
 
-# PopMovis 
-> Popcorn And Movies AKA The Best Duos !
+ Popcorn And Movies AKA The Best Duos !, help users discover popular and highly rated movies on the web.
 
-An Android app built for Udacity Android nanodegree degree.
+Part of the Android Developer Nanodegree Program
 
 ## Screens
 
