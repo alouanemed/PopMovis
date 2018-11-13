@@ -2,7 +2,7 @@
 
  Popcorn And Movies AKA The Best Duos !, help users discover popular and highly rated movies on the web.
 
-Part of the Android Developer Nanodegree Program
+> Part of the Android Developer Nanodegree Program. Check my graduation [Certificat](https://graduation.udacity.com/confirm/FZVNQDEG).
 
 ## Screens
 
